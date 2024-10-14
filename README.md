@@ -3,7 +3,7 @@
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Licence](https://img.shields.io/github/license/cxOrz/chaoxing-sign-cli?style=for-the-badge)
+![Licence](https://img.shields.io/github/license/cxOrz/chaoxing-signin?style=for-the-badge)
 
 基于 Nodejs 实现的一个命令行签到工具，在此基础上使用 React.js + Material UI + Koa 扩展成为 Web 项目。
 
@@ -22,13 +22,13 @@
 将仓库克隆到本地
 
 ```bash
-git clone https://github.com/cxOrz/chaoxing-sign-cli.git
+git clone https://github.com/cxOrz/chaoxing-signin.git
 ```
 
 进入项目文件夹，并安装依赖
 
 ```bash
-cd chaoxing-sign-cli
+cd chaoxing-signin
 pnpm install
 ```
 
@@ -72,7 +72,7 @@ pnpm start
 
 ### 二维码签到
 
-在运行之前需要做些准备，请找一位挚友，拍一张二维码的照片，识别二维码，得到一个字符串，复制其中的 `enc` 参数值，例如 `1D0A628CK317F44CCC378M5KD92`，询问时填入。若使用 UI 仓库的项目(查看`高级`)，可以直接选择图片并自动解析得到enc参数。如果遇到10s变换的二维码，参考 [#178](https://github.com/cxOrz/chaoxing-sign-cli/issues/178)
+在运行之前需要做些准备，请找一位挚友，拍一张二维码的照片，识别二维码，得到一个字符串，复制其中的 `enc` 参数值，例如 `1D0A628CK317F44CCC378M5KD92`，询问时填入。若使用 UI 仓库的项目(查看`高级`)，可以直接选择图片并自动解析得到enc参数。如果遇到10s变换的二维码，参考 [#178](https://github.com/cxOrz/chaoxing-signin/issues/178)
 
 ### 位置签到
 
@@ -110,8 +110,8 @@ pnpm start
 方案二：用提供的 Docker 镜像，运行后可通过 IP 访问。
 
 ```bash
-docker pull ghcr.io/cxorz/chaoxing-sign-cli:latest
-docker run -d -p 80:80 -p 5000:5000 ghcr.io/cxorz/chaoxing-sign-cli
+docker pull ghcr.io/cxorz/chaoxing-signin:latest
+docker run -d -p 80:80 -p 5000:5000 ghcr.io/cxorz/chaoxing-signin
 ```
 
 > 出现问题？先仔细阅读相关说明，若仍无法解决请发 issue
@@ -129,8 +129,7 @@ docker run -d -p 80:80 -p 5000:5000 ghcr.io/cxorz/chaoxing-sign-cli
 
 必要条件：
 - 运行 `turbo run lint` 无错误出现，可以有警告
-- 测试所有功能全部正常，保证修改不会导致任何原有功能出错
-- 代码设计合理、健壮、简洁
+- 测试所有功能全部正常
 
 ## 免责声明
 
