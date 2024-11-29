@@ -3,9 +3,12 @@
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Licence](https://img.shields.io/github/license/cxOrz/chaoxing-signin?style=for-the-badge)
+![Licence](https://img.shields.io/github/license/misaka-org/Chaoxing-AutoSignin?style=for-the-badge)
 
 基于 Nodejs 实现的一个命令行签到工具，在此基础上使用 React.js + Material UI + Koa 扩展成为 Web 项目。
+
+本仓库 Fork 自 [cxOrz/chaoxing-signin](https://github.com/cxOrz/chaoxing-signin)，对原仓库进行了一些修改。
+原仓库为 MIT 协议，本仓库为 AGPLv3 协议！
 
 **功能**： 普通签到、拍照签到、手势签到、位置签到、签到码签到、二维码签到，多用户凭据储存，IM 协议自动签到。
 
@@ -21,14 +24,9 @@
 
 将仓库克隆到本地
 
-```bash
-git clone https://github.com/cxOrz/chaoxing-signin.git
-```
-
 进入项目文件夹，并安装依赖
 
 ```bash
-cd chaoxing-signin
 pnpm install
 ```
 
@@ -103,33 +101,7 @@ pnpm start
 - 前端界面，查看 [前端](/apps/web) 的详细说明。
 - 后端服务，查看 [服务端](/apps/server) 的详细说明。
 
-### 一键运行
-
-方案一：根目录下执行 `pnpm dev` 将运行前后端服务，并在浏览器弹出项目首页，注意这是开发模式！
-
-方案二：用提供的 Docker 镜像，运行后可通过 IP 访问。
-
-```bash
-docker pull ghcr.io/cxorz/chaoxing-signin:latest
-docker run -d -p 80:80 -p 5000:5000 ghcr.io/cxorz/chaoxing-signin
-```
-
 > 出现问题？先仔细阅读相关说明，若仍无法解决请发 issue
-
-### 展示
-
-![](https://service-m9r7liw5-1252446325.bj.apigw.tencentcs.com/release/ui-start.png)
-![](https://service-m9r7liw5-1252446325.bj.apigw.tencentcs.com/release/ui-config.webp)
-
-## 贡献须知
-
-> 由于作者精力有限，自 2023.6.10 起，本项目不再维护，欢迎热心同学们贡献代码。
-
-发起 pr 之前务必先发起issue进行讨论，之后新建一个分支(以提供的功能命名），并在此分支完成你的代码即可提交 pr。
-
-必要条件：
-- 运行 `turbo run lint` 无错误出现，可以有警告
-- 测试所有功能全部正常
 
 ## 免责声明
 
