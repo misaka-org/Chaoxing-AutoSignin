@@ -1,9 +1,10 @@
 import { CHAT_GROUP, PPTSIGN } from '../configs/api';
 import { cookieSerialize, request } from '../utils/request';
+import { getValidate } from './captcha';
 
 export const GeneralSign = async (args: BasicCookie & { name: string; activeId: string; fid: string; }): Promise<string> => {
   const { name, activeId, fid, ...cookies } = args;
-  const url = `${PPTSIGN.URL}?activeId=${activeId}&uid=${cookies._uid}&clientip=&latitude=-1&longitude=-1&appType=15&fid=${fid}&name=${name}`;
+  const url = `${PPTSIGN.URL}?activeId=${activeId}&uid=${cookies._uid}&clientip=&latitude=-1&longitude=-1&appType=15&fid=${fid}&name=${name}&validate=${await getValidate()}`;
   const result = await request(url, {
     headers: {
       Cookie: cookieSerialize(cookies),

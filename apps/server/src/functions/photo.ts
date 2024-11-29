@@ -4,14 +4,14 @@ import { tmpdir } from 'os';
 import path from 'path';
 import { CHAT_GROUP, PANCHAOXING, PANLIST, PANUPLOAD, PPTSIGN } from '../configs/api';
 import { cookieSerialize, request } from '../utils/request';
+import { getValidate } from './captcha';
 
 export const PhotoSign = async (
   args: BasicCookie & { fid: string; objectId: string; name: string; activeId: string }
 ): Promise<string> => {
   const { name, activeId, fid, objectId, ...cookies } = args;
-  const url = `${PPTSIGN.URL}?activeId=${activeId}&uid=${
-    cookies._uid
-  }&clientip=&useragent=&latitude=-1&longitude=-1&appType=15&fid=${fid}&objectId=${objectId}&name=${encodeURIComponent(name)}`;
+  const url = `${PPTSIGN.URL}?activeId=${activeId}&uid=${cookies._uid
+    }&clientip=&useragent=&latitude=-1&longitude=-1&appType=15&fid=${fid}&objectId=${objectId}&name=${encodeURIComponent(name)}&validate=${await getValidate()}`;
   const result = await request(url, {
     headers: {
       Cookie: cookieSerialize(cookies),
@@ -24,7 +24,7 @@ export const PhotoSign = async (
 
 export const PhotoSign_2 = async (args: BasicCookie & { objectId: string; activeId: string }): Promise<string> => {
   const { activeId, objectId, ...cookies } = args;
-  const url = `${CHAT_GROUP.SIGN.URL}?activeId=${activeId}&uid=${cookies._uid}&clientip=&useragent=&latitude=-1&longitude=-1&fid=0&objectId=${objectId}`;
+  const url = `${CHAT_GROUP.SIGN.URL}?activeId=${activeId}&uid=${cookies._uid}&clientip=&useragent=&latitude=-1&longitude=-1&fid=0&objectId=${objectId}&validate=${await getValidate()}`;
   const result = await request(url, {
     headers: {
       Cookie: cookieSerialize(cookies),

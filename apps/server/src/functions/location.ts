@@ -1,6 +1,7 @@
 import { CHAT_GROUP, PPTSIGN } from '../configs/api';
 import { delay } from '../utils/helper';
 import { cookieSerialize, request } from '../utils/request';
+import { getValidate } from './captcha';
 
 interface AddressItem {
   lon: string;
@@ -21,7 +22,7 @@ export const LocationSign: LocationSignType = async (args): Promise<string> => {
   if ('address' in args) {
     // 单个位置直接签
     const { name, address, activeId, lat, lon, fid, ...cookies } = args;
-    const url = `${PPTSIGN.URL}?name=${name}&address=${address}&activeId=${activeId}&uid=${cookies._uid}&clientip=&latitude=${lat}&longitude=${lon}&fid=${fid}&appType=15&ifTiJiao=1`;
+    const url = `${PPTSIGN.URL}?name=${name}&address=${address}&activeId=${activeId}&uid=${cookies._uid}&clientip=&latitude=${lat}&longitude=${lon}&fid=${fid}&appType=15&ifTiJiao=1&validate=${await getValidate()}`;
     const result = await request(url, {
       headers: {
         Cookie: cookieSerialize(cookies),
@@ -32,7 +33,7 @@ export const LocationSign: LocationSignType = async (args): Promise<string> => {
     // 多个位置尝试
     const { name, activeId, presetAddress, fid, ...cookies } = args;
     for (let i = 0; i < presetAddress.length; i++) {
-      const url = `${PPTSIGN.URL}?name=${name}&address=${presetAddress[i].address}&activeId=${activeId}&uid=${cookies._uid}&clientip=&latitude=${presetAddress[i].lat}&longitude=${presetAddress[i].lon}&fid=${fid}&appType=15&ifTiJiao=1`;
+      const url = `${PPTSIGN.URL}?name=${name}&address=${presetAddress[i].address}&activeId=${activeId}&uid=${cookies._uid}&clientip=&latitude=${presetAddress[i].lat}&longitude=${presetAddress[i].lon}&fid=${fid}&appType=15&ifTiJiao=1&validate=${await getValidate()}`;
       const result = await request(url, {
         headers: {
           Cookie: cookieSerialize(cookies),
@@ -59,7 +60,7 @@ export const LocationSign_2: LocationSignType = async (args): Promise<string> =>
   if ('address' in args) {
     // 单个位置直接签
     const { address, activeId, lat, lon, ...cookies } = args;
-    const formdata = `address=${encodeURIComponent(address)}&activeId=${activeId}&uid=${cookies._uid}&clientip=&useragent=&latitude=${lat}&longitude=${lon}&fid=&ifTiJiao=1`;
+    const formdata = `address=${encodeURIComponent(address)}&activeId=${activeId}&uid=${cookies._uid}&clientip=&useragent=&latitude=${lat}&longitude=${lon}&fid=&ifTiJiao=1&validate=${await getValidate()}`;
     const result = await request(
       CHAT_GROUP.SIGN.URL,
       {
@@ -76,7 +77,7 @@ export const LocationSign_2: LocationSignType = async (args): Promise<string> =>
     // 多个位置尝试
     const { activeId, presetAddress, ...cookies } = args;
     for (let i = 0; i < presetAddress.length; i++) {
-      const formdata = `address=${encodeURIComponent(presetAddress[i].address)}&activeId=${activeId}&uid=${cookies._uid}&clientip=&useragent=&latitude=${presetAddress[i].lat}&longitude=${presetAddress[i].lon}&fid=&ifTiJiao=1`;
+      const formdata = `address=${encodeURIComponent(presetAddress[i].address)}&activeId=${activeId}&uid=${cookies._uid}&clientip=&useragent=&latitude=${presetAddress[i].lat}&longitude=${presetAddress[i].lon}&fid=&ifTiJiao=1&validate=${await getValidate()}`;
       const result = await request(
         CHAT_GROUP.SIGN.URL,
         {
